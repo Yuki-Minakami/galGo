@@ -2,7 +2,7 @@
  * Created by likai on 16/5/21.
  */
 $(".save").on("click",function(){
-    ipcRenderer.send('save',getStatus());
+    ipcRenderer.send('save','');
 })
 
 $(".load").on("click",function(){

@@ -6,6 +6,7 @@ const app = electron.app
 const BrowserWindow = electron.BrowserWindow;
 const ipcMain = require('electron').ipcMain;
 
+var commonTxt = require("./scenario/common.js")
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -93,4 +94,14 @@ ipcMain.on("qLoad",function(event,arg){
   var obj = JSON.parse(content.toString());
   var qLoadObj = obj.qSave;
   event.sender.send("qLoadCallback",qLoadObj)
+})
+
+
+ipcMain.on("reqTxt",function(event,arg){
+
+  var BGTxt = commonTxt["p"+arg.BG];
+  console.log(arg.BG);
+  console.log(BGTxt);
+  event.sender.send("reqTxtCallback",BGTxt);
+
 })
