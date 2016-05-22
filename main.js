@@ -61,9 +61,7 @@ ipcMain.on("load",function(event,arg){
   event.sender.send("loadCallback",obj);
 })
 
-
 ipcMain.on("save",function(event,arg){
-  console.log(arg);
   var content = fs.readFileSync("./sl/list.json");
   var obj = JSON.parse(content.toString());
   event.sender.send("saveCallback",obj);
@@ -77,4 +75,22 @@ ipcMain.on("saveFinished",function(event,arg){
   console.log(JSON.stringify(obj));
   fs.writeFileSync("./sl/list.json",JSON.stringify(obj))
 
+})
+
+ipcMain.on("qSave",function(event,arg){
+  var content = fs.readFileSync("./sl/list.json");
+  var obj = JSON.parse(content.toString());
+  obj["qSave"][0] = "p"+arg.BG;
+  fs.writeFileSync("./sl/list.json",JSON.stringify(obj))
+
+  event.sender.send("qSaveCallback"," ");
+
+})
+
+
+ipcMain.on("qLoad",function(event,arg){
+  var content = fs.readFileSync("./sl/list.json");
+  var obj = JSON.parse(content.toString());
+  var qLoadObj = obj.qSave;
+  event.sender.send("qLoadCallback",qLoadObj)
 })

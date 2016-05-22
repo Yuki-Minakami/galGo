@@ -9,6 +9,17 @@ $(".load").on("click",function(){
     ipcRenderer.send('load','');
 })
 
+$(".qSave").on("click",function(){
+    ipcRenderer.send('qSave',getStatus());
+})
+
+$(".qLoad").on("click",function(){
+    ipcRenderer.send('qLoad','');
+})
+
+
+
+
 function showSLList(arg,func,currentSrc){
     $(".sl").css("display","block");
     $(".sl").empty();
@@ -38,17 +49,6 @@ function showSLList(arg,func,currentSrc){
     $(".slList").append(li);
 }
 
-
-ipcRenderer.on("loadCallback",function(event,arg){
-   showSLList(arg,load)
-})
-
-ipcRenderer.on("saveCallback",function(event,arg){
-    var currentSrc = $(".BG").attr("src")
-    showSLList(arg,save,currentSrc)
-})
-
-
 function hideSL(){
     $(".sl").css("display","none");
 }
@@ -68,10 +68,9 @@ function save(thiz,currentSrc,id){
         $(thiz).find("img").attr("src",currentSrc);
     }else{
         $(thiz).empty();
-        var img = $( '<img class="slImg"/>');
+        var img = $('<img class="slImg"/>');
         img.attr("src", currentSrc)
         $(thiz).append(img);
-
     }
 
     var bg = currentSrc.substr(4,1);
@@ -85,6 +84,26 @@ function save(thiz,currentSrc,id){
 
 }
 
+
+
+ipcRenderer.on("loadCallback",function(event,arg){
+    showSLList(arg,load)
+})
+
+ipcRenderer.on("saveCallback",function(event,arg){
+    var currentSrc = $(".BG").attr("src")
+    showSLList(arg,save,currentSrc)
+})
+
 ipcRenderer.on("saveFinishedCallback",function(event,arg){
     alert("保存成功");
+})
+
+ipcRenderer.on("qSaveCallback",function(event,arg){
+    alert("快速保存成功");
+})
+
+ipcRenderer.on("qLoadCallback",function(event,arg){
+    var BGSrc = "BG/"+arg[0]+".png";
+    $(".BG").attr("src",BGSrc);
 })
