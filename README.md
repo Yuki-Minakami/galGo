@@ -11,7 +11,10 @@
 - 在目录下运行 **npm install && npm start**
 
 ## 进度
-- 2016-05-20 完成 **save && load部分**
-- 2016-05-21 完成 **quick save && quick load部分**
+- 2016-05-21
+- **save && load部分**
+- 2016-05-22
+- 完成 **quick save && quick load部分**
+- 完成 **简单的文字系统**
 
 #### License [CC0 (Public Domain)](LICENSE.md)
