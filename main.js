@@ -1,8 +1,11 @@
 const electron = require('electron')
+var fs = require("fs");
 // Module to control application life.
 const app = electron.app
 // Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow
+const BrowserWindow = electron.BrowserWindow;
+const ipcMain = require('electron').ipcMain;
+
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -51,3 +54,27 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+ipcMain.on("load",function(event,arg){
+  console.log("get load");
+  var content = fs.readFileSync("./sl/list.json");
+  var obj = JSON.parse(content.toString());
+  event.sender.send("loadCallback",obj);
+})
+
+
+ipcMain.on("save",function(event,arg){
+  console.log(arg);
+  var content = fs.readFileSync("./sl/list.json");
+  var obj = JSON.parse(content.toString());
+  event.sender.send("saveCallback",obj);
+})
+
+ipcMain.on("saveFinished",function(event,arg){
+  console.log(arg);
+  var content = fs.readFileSync("./sl/list.json");
+  var obj = JSON.parse(content.toString());
+  obj[arg.count][0] = "p"+arg.BG;
+  console.log(JSON.stringify(obj));
+  fs.writeFileSync("./sl/list.json",JSON.stringify(obj))
+
+})

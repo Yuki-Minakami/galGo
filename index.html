@@ -2,18 +2,26 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>galgame</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script>window.$ = window.jQuery = require('./js/jquery.js');</script>
   </head>
-  <body>
-    <h1>Hello World!</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using node <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
-  </body>
-
   <script>
-    // You can also require other files to run in this process
-    require('./renderer.js')
+      var ipcRenderer = require('electron').ipcRenderer;
+
+
   </script>
+  <body>
+    <img src="BG/p1.png" class="BG"/>
+    <div class="sl"></div>
+    <footer class="content">
+        <button class="save">save</button>
+        <button class="load">load</button>
+
+    </footer>
+  </body>
+  <script type="text/javascript" src="js/loadBG.js"></script>
+  <script type="text/javascript" src="js/loadCG.js"></script>
+  <script type="text/javascript" src="js/toolbar.js"></script>
+
 </html>
