@@ -8,6 +8,8 @@ const ipcMain = require('electron').ipcMain;
 
 var commonTxt = require("./scenario/common.js")
 
+var commonCG = require("./controller/CGController.js");
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
@@ -98,10 +100,17 @@ ipcMain.on("qLoad",function(event,arg){
 
 
 ipcMain.on("reqTxt",function(event,arg){
-
   var BGTxt = commonTxt["p"+arg.BG];
   console.log(arg.BG);
   console.log(BGTxt);
   event.sender.send("reqTxtCallback",BGTxt);
+
+})
+
+ipcMain.on("reqCG",function(event,arg){
+  var status = arg.BG;
+  var CGList = commonCG["p"+status];
+  console.log(CGList);
+  event.sender.send("reqCGCallback",CGList);
 
 })

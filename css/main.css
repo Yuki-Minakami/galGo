@@ -10,6 +10,16 @@
     z-index: -999;
 }
 
+.CG{
+    width:300px;
+    height: 400px;
+    position: absolute;
+    bottom: 0px;
+    left: 250px;
+
+    z-index: 100;
+}
+
 .content{
     position: absolute;
     top: 400px;
@@ -17,6 +27,7 @@
     height: 200px;
     background-color: lightslategrey;
     opacity:0.7;
+    z-index: 999;
 }
 
 .sl{
