@@ -16,5 +16,7 @@
 - 2016-05-22
 - 完成 **quick save && quick load部分**
 - 完成 **简单的文字系统**
+- 2016-05-28
+- 增加了同一背景下人物CG的切换部分
 
 #### License [CC0 (Public Domain)](LICENSE.md)
